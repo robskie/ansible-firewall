@@ -1,0 +1,12 @@
+---
+firewall_default_rules:
+  000 - Default policies:
+    - -P INPUT ACCEPT
+    - -P OUTPUT ACCEPT
+    - -P FORWARD ACCEPT
+  001 - Allow loopback:
+    - -A INPUT -i lo -j ACCEPT
+  990 - Allow established:
+    - -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+  999 - Drop other:
+    - -A INPUT -j DROP

@@ -1,0 +1,16 @@
+---
+firewall_cmd: iptables
+firewall_dir: /etc/firewall/
+firewall_rules_dir: "{{ firewall_dir }}rule.d/"
+firewall_clear_rules: no
+firewall_default_file: default.yml
+firewall_blacklist_pos: "049"
+firewall_whitelist_pos: "050"
+firewall_rules: []
+firewall_flush_cmds:
+  - -F
+  - -X
+  - -t nat -F
+  - -t nat -X
+  - -t mangle -F
+  - -t mangle -X

@@ -1,0 +1,29 @@
+{% if item.forward_tcp_ports is defined %}
+{% for forward in item.forward_tcp_ports %}
+{{ firewall_cmd }} -t nat -A PREROUTING -p tcp -m tcp --dport {{ forward.src }} -j REDIRECT --to-ports {{ forward.dest }}
+{% endfor %}
+{% endif %}
+
+{%- if item.forward_udp_ports is defined %}
+{% for forward in item.forward_udp_ports %}
+{{ firewall_cmd }} -t nat -A PREROUTING -p udp -m udp --dport {{ forward.src }} -j REDIRECT --to-ports {{ forward.dest }}
+{% endfor %}
+{% endif %}
+
+{%- if item.allow_tcp_ports is defined %}
+{% for port in item.allow_tcp_ports %}
+{{ firewall_cmd }} -A INPUT -p tcp -m tcp --dport {{ port }} -j ACCEPT
+{% endfor %}
+{% endif %}
+
+{%- if item.allow_udp_ports is defined %}
+{% for port in item.allow_udp_ports %}
+{{ firewall_cmd }} -A INPUT -p udp -m udp --dport {{ port }} -j ACCEPT
+{% endfor %}
+{% endif %}
+
+{%- if item.custom_rules is defined %}
+{% for rule in item.custom_rules %}
+{{ firewall_cmd }} {{ rule }}
+{% endfor %}
+{% endif %}

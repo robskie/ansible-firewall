@@ -1,0 +1,24 @@
+---
+galaxy_info:
+  author: robskie
+  description: Loads and manages iptables rules
+  license: MIT license
+  min_ansible_version: 1.4
+  platforms:
+  - name: Debian
+    versions:
+      - wheezy
+      - jessie
+  - name: Ubuntu
+    versions:
+      - precise
+      - trusty
+      - xenial
+  galaxy_tags:
+    - iptables
+    - firewall
+    - networking
+    - system
+    - security
+
+dependencies: []

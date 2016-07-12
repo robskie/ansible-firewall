@@ -1,0 +1,23 @@
+#!/bin/sh
+# This script loads the iptable rules.
+
+set -e
+
+{% if firewall_prehook is defined %}
+# Run prehook command
+{{ firewall_prehook }}
+{% endif %}
+
+# Flush rules
+{% for cmd in firewall_flush_cmds %}
+{{ firewall_cmd }} {{ cmd }}
+{% endfor %}
+
+# Load rules
+rules=$(cat {{ firewall_dir }}firewall.rule)
+eval "$rules"
+
+{% if firewall_posthook is defined %}
+# Run posthook command
+{{ firewall_posthook }}
+{% endif %}

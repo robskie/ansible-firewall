@@ -1,0 +1,6 @@
+# Ignore vagrant auto-generated files
+.vagrant/
+*.log
+
+# Ignore python "compiled" files
+**/*.pyc

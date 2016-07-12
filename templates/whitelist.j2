@@ -1,0 +1,3 @@
+{% for ip in lookup('file', firewall_whitelist).split() %}
+{{ firewall_cmd }} -A INPUT -s {{ ip }} -j ACCEPT
+{% endfor %}

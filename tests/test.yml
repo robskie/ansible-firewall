@@ -1,0 +1,32 @@
+---
+- hosts: all
+  sudo: yes
+  roles:
+    - role: ansible-firewall
+      firewall_clear_rules: yes
+      firewall_whitelist: files/firewall-whitelist.ips
+      firewall_blacklist: files/firewall-blacklist.ips
+      firewall_rules:
+        - name: Forward tcp ports
+          position: 100
+          forward_tcp_ports:
+            - { src: 25, dest: 2525 }
+        - name: Forward udp ports
+          position: 200
+          forward_udp_ports:
+            - { src: 3478, dest: 3479 }
+        - name: Allow udp ports
+          position: 300
+          allow_udp_ports:
+            - 3074
+        - name: Allow tcp ports
+          position: 400
+          allow_tcp_ports:
+            - 22
+            - 80
+            - 123
+            - 443
+        - name: Allow ping requests
+          position: 500
+          custom_rules:
+            - -A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
