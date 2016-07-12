@@ -1,9 +1,14 @@
 # Ansible Role: Firewall
+[![Build Status](https://travis-ci.org/robskie/ansible-firewall.svg?branch=master)][1]
+[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-firewall-blue.svg)][2]
 
 This role manages iptables rules and enables them at boot time. This installs a
 `firewall` init service after a successul run that you can use to control the
 firewall. For example, to stop the firewall, type `service firewall stop` in the
 command line. Other service commands are `start` and `restart`.
+
+[1]: https://travis-ci.org/robskie/ansible-firewall
+[2]: https://galaxy.ansible.com/robskie/firewall/
 
 ## Requirements
 
